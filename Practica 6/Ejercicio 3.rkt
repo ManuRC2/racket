@@ -1,0 +1,14 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-advanced-reader.ss" "lang")((modname |Ejercicio 3|) (read-case-sensitive #t) (teachpacks ((lib "image.rkt" "teachpack" "2htdp") (lib "universe.rkt" "teachpack" "2htdp"))) (htdp-settings #(#t constructor repeating-decimal #t #t none #f ((lib "image.rkt" "teachpack" "2htdp") (lib "universe.rkt" "teachpack" "2htdp")) #f)))
+(define (sumanat x y) (cond
+                        [(zero? x) y]
+                        [(positive? x) (sumanat (sub1 x) (add1 y))]))
+
+(define (multiplicar x y) (cond
+                            [(zero? x) 0]
+                            [(positive? x) (sumanat y (multiplicar (sub1 x) y))]))
+
+(define (powernat x y) (cond
+                         [(zero? y) 1]
+                         [(positive? y) (multiplicar x (powernat x (sub1 y)))]))
