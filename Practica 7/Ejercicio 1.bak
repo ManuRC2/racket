@@ -12,16 +12,14 @@
 
 (define (simular-dado n) (cond
                            [(zero? n) '()]
-                           [(positive? n) (cons (add1 (random CARAS)) (simular-dado (sub1 n)))]))
+                           [(positive? n) (cons (random (add1 CARAS)) (simular-dado (sub1 n)))]))
 
 (define EXPERIMENTO (simular-dado MAX))
 (define VALORES (intervalo CARAS))
 
-(define (frecuencia n l) (foldr + 0 (map (lambda (x) 1) (filter (lambda (x) (= n x)) l))))
+(define (frecuencia n l) (foldr + 0 (filter (lambda (x) (= n x)) l)))
 
 (define (frecuencia-relativa n l) (/  (frecuencia n l) (length l)))
 (define (frec-rel-exp n) (frecuencia-relativa n EXPERIMENTO))
 
-(frec-rel-exp 3)
-
-; sin terminar
+(frec-rel-exp 4)
