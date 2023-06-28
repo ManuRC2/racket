@@ -17,25 +17,16 @@ Integrantes:
 
 ;;;;;;;; Ejercicio 2
 
-(define (last l) (first (reverse l)))
-(define (remove-last l) (reverse (rest (reverse l))))
-
 (define (getelem n l) (cond
                         [(zero? n) (first l)]
                         [(positive? n) (getelem (sub1 n) (rest l))]))
 
-(define (put-element-last n l elem) (cond
-                                   [(zero? (length l)) (cons n '())]
-                                   [(positive? (length l)) (if (= (first l) elem)
-                                                               (put-element-last (first l) (rest l) elem)
-                                                               (cons (first l) (put-element-last n (rest l) elem)))]))
-
 (define (barajar l) (cond
-                      [(zero? (length l)) '()]
-                      [(positive? (length l)) (local [(define RN (random (length l)))] (cons (last (put-element-last 0 l (getelem RN l)))
-                                                                                             (barajar (remove-last (put-element-last 0 l (getelem RN l))))))]))
+                          [(zero? (length l)) '()]
+                          [(positive? (length l)) (local [(define RN (random (length l)))] (cons (getelem RN l) (barajar (remove (getelem RN l) l))))]))
 
-(barajar MAZO-ORDENADO)
+(barajar-pro MAZO-ORDENADO)
+
 ;;;;;;;; Ejercicio 3
 
 ; [Completar]
